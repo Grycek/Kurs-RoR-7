@@ -1,0 +1,10 @@
+%h1 Lista wszystkich grup
+- @groups.each do |group|
+  %p
+    Grupa
+    %br
+    = link_to group.name, group_path(group)
+    %br
+    %br
+    
+= link_to "Utwórz własną grupę", new_group_path

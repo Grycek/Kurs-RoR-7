@@ -1,6 +1,10 @@
 Task7::Application.routes.draw do
+  get "profile/show"
+
   devise_for :users
   root :to => "home#index"
+  resources :groups
+  resources :profiles
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

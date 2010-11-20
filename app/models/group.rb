@@ -1,5 +1,7 @@
 class Group < ActiveRecord::Base
-  has_many :memberships
+  validates :description, :presence => true
+  
+  has_many :memberships, :dependent => :destroy
   has_many :users, :through => :memberships
   
   def admins
