@@ -3,8 +3,20 @@ Task7::Application.routes.draw do
 
   devise_for :users
   root :to => "home#index"
-  resources :groups
-  resources :profiles
+
+  resources :profiles do
+    member do
+      post :invite
+    end
+  end
+  
+  resources :groups do
+    member do
+      post :invite
+    end
+  end
+  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

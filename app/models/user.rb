@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :groups, :through => :memberships
 
+  has_many :membership_invitations
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,

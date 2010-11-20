@@ -2,9 +2,35 @@
   =@group.name
 
 %p
-  Opis:
+  %h3
+    Opis:
   %br
   =@group.description
+  %br
+  %h3
+    Członkowie:
+  -@group.users.each do |user|
+    Email:
+    =link_to user.email, profile_path(user)
+    %br
+  %h3
+    Administratorzy:
+  -@group.admins.each do |user|
+    Email:
+    =link_to user.email, profile_path(user)
+    %br
+    
+%p
+  -if @group.is_admin(current_user)
+    %h3
+      Zaproś:
+    =form_for @invitation, :url => invite_group_path(@group) do |f|
+      =render :partial => 'error', :locals => {:f => @invitation}
+      %br
+      =f.select(:user_id, options_for_select(  @uninvited_users.map {|u| [u.email, u.id] } )    )
+      %br
+      =f.submit "Zaproś", :disabled => (@uninvited_users.length == 0)
+  
 %br
 %br
 =link_to "Powrót" , groups_path
