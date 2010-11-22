@@ -15,7 +15,7 @@
     -@invitations.each do |inv|
       =link_to inv.group.name ,group_path(inv.group)
       =form_for @membership, :url => invite_profile_path(@user) do |f|
-        =f.select(:accept, options_for_select(  [["Accept", 1], ["Reject", 1]] )    )
+        =f.select(:accept, options_for_select(  [["Accept", 1], ["Reject", 0]] )    )
         =hidden_field_tag :inv, inv.id
         =f.submit "OK"
       %br
